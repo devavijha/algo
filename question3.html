@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Merge Two Sorted Arrays (Intermediate)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">AlgoXpert</div>
+      <div class="nav-items">
+        <div class="nav-items">
+          <a href="#">Home</a>
+          <a href="suggestions.html">Suggestions</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="practice.html" class="btn">Get Started</a>              
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Merge Two Sorted Arrays (Intermediate)</h2>
+      <p>Write a Java program to merge two sorted arrays into a single sorted array.</p>
+      
+      <!-- Code Editor -->
+      <textarea id="code" placeholder="Write your Java code here..."></textarea>
+
+      <!-- Run Button -->
+      <button id="runBtn">Run Code</button>
+
+      <!-- Output -->
+      <div id="output">
+        <h3>Output:</h3>
+        <pre id="result"></pre>
+      </div>
+
+      <!-- Solution Section -->
+      <div id="solution">
+        <h3>Solution:</h3>
+        <pre>
+public class MergeArrays {
+    public static void main(String[] args) {
+        int[] arr1 = {1, 3, 5, 7};
+        int[] arr2 = {2, 4, 6, 8};
+        int[] mergedArr = new int[arr1.length + arr2.length];
+        
+        int i = 0, j = 0, k = 0;
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                mergedArr[k++] = arr1[i++];
+            } else {
+                mergedArr[k++] = arr2[j++];
+            }
+        }
+        
+        while (i < arr1.length) {
+            mergedArr[k++] = arr1[i++];
+        }
+        
+        while (j < arr2.length) {
+            mergedArr[k++] = arr2[j++];
+        }
+
+        System.out.print("Merged Array: ");
+        for (int num : mergedArr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+        </pre>
+      </div>
+
+      <!-- Suggestion Section -->
+      <div id="suggestion">
+        <h3>Suggestions if you are stuck:</h3>
+        <ul>
+          <li>Remember to keep two pointers: one for each array.</li>
+          <li>Use a third array to store the merged elements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("runBtn").addEventListener("click", function() {
+        const code = document.getElementById("code").value;
+        document.getElementById("result").textContent = "Running Java code: \n" + code + "\n\n(Make sure to implement server-side logic for actual execution)";
+      });
+    </script>
+  </body>
+</html>

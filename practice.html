@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlgoXpert</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">AlgoXpert</div>
+      <div class="nav-items">
+        <a href="index.html">Home</a>
+        <a href="practice.html">Practice</a>
+        <a href="suggestions.html">Suggestions</a>
+        <!--
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      -->
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="hero-container">
+          <div class="column-left">
+              <h1>Start your coding journey today</h1>
+              <p>Learn to code from scratch with practice oriented courses designed by experts.</p>
+              <div class="cta-container">  <input type="email" class="email-input" placeholder="Enter email">
+
+                  <button class="start-learning-button">Start learning today</button>
+              </div>
+          </div>
+          <div class="column-right">
+              <img class="hero-image" src="coding_boy.svg" alt="Coding Illustration">
+          </div>
+      </div>
+  </section>
+  
+  <style>
+  
+      .cta-container {
+          display: flex;
+          justify-content: center; /* Center horizontally */
+          align-items: center; /* Center vertically */
+          width: 100%; /* Ensure container takes full width */
+      }
+  
+      .email-input {
+          margin-right: 10px;
+      }
+  
+      .start-learning-button {
+          margin-left: 0; /* Remove any previous left margin */
+      }
+  
+      @media screen and (min-width: 768px) {
+          .cta-container {
+              justify-content: flex-start; /* Align to the left on larger screens if needed */
+          }
+      }
+  
+      /* ... (Rest of your CSS) ... */
+  </style>
+    <main class="content">
+      <div class="container">
+          <h2>Available Challenges</h2>
+          <div class="challenge-filter">
+              <label for="difficulty-filter">Filter by Difficulty:</label>
+              <select id="difficulty-filter">
+                  <option value="all">All</option>
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+              </select>
+              <label for="search-challenges">Search Challenges:</label>
+              <input type="text" id="search-challenges" placeholder="Search...">
+          </div>
+          <ul class="challenge-list">
+          </ul>
+      </div>
+  </main>
+  
+  <script>
+      const challenges = [
+          { title: "1. Reverse an Array", link: "question1.html", difficulty: "beginner" },
+          { title: "2. Find the Largest Element in an Array", link: "question2.html", difficulty: "beginner" },
+          { title: "3. Merge Two Sorted Arrays", link: "question3.html", difficulty: "intermediate" },
+          { title: "4. Detect Cycle in a Linked List", link: "question4.html", difficulty: "intermediate" },
+          { title: "5. Find the Middle Element of a Linked List", link: "question5.html", difficulty: "intermediate" },
+          { title: "6. Implement Binary Search", link: "question6.html", difficulty: "intermediate" },
+          { title: "7. Depth First Search in a Graph", link: "question7.html", difficulty: "advanced" },
+          { title: "8. Breadth First Search in a Graph", link: "question8.html", difficulty: "advanced" },
+          { title: "9. Solve a Knapsack Problem", link: "question9.html", difficulty: "advanced" },
+          { title: "10. Find Shortest Path in a Weighted Graph", link: "question10.html", difficulty: "advanced" },
+      ];
+  
+      const challengeList = document.querySelector(".challenge-list");
+      const difficultyFilter = document.getElementById("difficulty-filter");
+      const searchChallenges = document.getElementById("search-challenges");
+  
+      function displayChallenges(filteredChallenges = challenges) {
+          challengeList.innerHTML = ""; // Clear existing list
+  
+          filteredChallenges.forEach(challenge => {
+              const listItem = document.createElement("li");
+              listItem.dataset.difficulty = challenge.difficulty; // Set data attribute for CSS
+              const link = document.createElement("a");
+              link.href = challenge.link;
+              link.textContent = challenge.title;
+              listItem.appendChild(link);
+              challengeList.appendChild(listItem);
+          });
+      }
+  
+      function filterChallenges() {
+          const selectedDifficulty = difficultyFilter.value;
+          const searchTerm = searchChallenges.value.toLowerCase();
+  
+          const filteredChallenges = challenges.filter(challenge => {
+              const difficultyMatch = selectedDifficulty === "all" || challenge.difficulty === selectedDifficulty;
+              const searchMatch = challenge.title.toLowerCase().includes(searchTerm);
+              return difficultyMatch && searchMatch;
+          });
+  
+          displayChallenges(filteredChallenges);
+      }
+  
+      difficultyFilter.addEventListener("change", filterChallenges);
+      searchChallenges.addEventListener("input", filterChallenges);
+  
+      displayChallenges(); // Initial display of challenges
+  </script>
+  
+  <style>
+      /* ... (Your existing CSS) ... */
+  
+      .challenge-filter {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 20px;
+          align-items: center;
+          justify-content: flex-end;
+      }
+  
+      .challenge-filter label {
+          font-weight: bold;
+      }
+  
+      .challenge-filter select, .challenge-filter input[type="text"] {
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+      }
+  
+      .challenge-list li {
+          background-color: #fff;
+          margin: 10px 0;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          transition: transform 0.2s, box-shadow 0.2s;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+      }
+  
+      .challenge-list li:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+  
+      .challenge-list li a {
+          text-decoration: none;
+          color: #333;
+          font-size: 1.1rem;
+          font-weight: 600;
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: relative;
+          z-index: 1;
+      }
+  
+      .challenge-list li a:hover {
+          color: #ff9100;
+      }
+  
+      .challenge-list li::before {
+          content: attr(data-difficulty);
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-color: #f0ad4e;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          z-index: 2;
+      }
+  
+      .challenge-list li[data-difficulty="beginner"]::before {
+          background-color: #5cb85c;
+      }
+  
+      .challenge-list li[data-difficulty="intermediate"]::before {
+          background-color: #f0ad4e;
+      }
+  
+      .challenge-list li[data-difficulty="advanced"]::before {
+          background-color: #d9534f;
+      }
+  </style>
+    <footer>
+      <p>&copy; 2025 AlgoXpert | All Rights Reserved</p>
+  </footer>
+  </body>
+</html>

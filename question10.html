@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Implement Quick Sort (Advanced)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">AlgoXpert</div>
+      <div class="nav-items">
+        <div class="nav-items">
+          <a href="#">Home</a>
+          <a href="suggestions.html">Suggestions</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="practice.html" class="btn">Get Started</a>              
+      </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Implement Quick Sort (Advanced)</h2>
+      <p>Write a Java program to implement the quick sort algorithm to sort an array.</p>
+      
+      <!-- Code Editor -->
+      <textarea id="code" placeholder="Write your Java code here..."></textarea>
+
+      <!-- Run Button -->
+      <button id="runBtn">Run Code</button>
+
+      <!-- Output -->
+      <div id="output">
+        <h3>Output:</h3>
+        <pre id="result"></pre>
+      </div>
+
+      <!-- Solution Section -->
+      <div id="solution">
+        <h3>Solution:</h3>
+        <pre>
+public class QuickSort {
+    public static void main(String[] args) {
+        int[] arr = {10, 7, 8, 9, 1, 5};
+
+        System.out.println("Given Array:");
+        printArray(arr);
+
+        quickSort(arr, 0, arr.length - 1);
+
+        System.out.println("\nSorted Array:");
+        printArray(arr);
+    }
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+
+        swap(arr, i + 1, high);
+        return i + 1;
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+        </pre>
+      </div>
+
+      <!-- Suggestion Section -->
+      <div id="suggestion">
+        <h3>Suggestions if you are stuck:</h3>
+        <ul>
+          <li>Choose a pivot element and partition the array around it.</li>
+          <li>Recursively apply the quick sort to both the left and right subarrays.</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("runBtn").addEventListener("click", function() {
+        const code = document.getElementById("code").value;
+        document.getElementById("result").textContent = "Running Java code: \n" + code + "\n\n(Make sure to implement server-side logic for actual execution)";
+      });
+    </script>
+  </body>
+</html>

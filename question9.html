@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Implement Merge Sort (Advanced)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">AlgoXpert</div>
+      <div class="nav-items">
+        <div class="nav-items">
+          <a href="#">Home</a>
+          <a href="suggestions.html">Suggestions</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="practice.html" class="btn">Get Started</a>              
+      </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Implement Merge Sort (Advanced)</h2>
+      <p>Write a Java program to implement the merge sort algorithm to sort an array.</p>
+      
+      <!-- Code Editor -->
+      <textarea id="code" placeholder="Write your Java code here..."></textarea>
+
+      <!-- Run Button -->
+      <button id="runBtn">Run Code</button>
+
+      <!-- Output -->
+      <div id="output">
+        <h3>Output:</h3>
+        <pre id="result"></pre>
+      </div>
+
+      <!-- Solution Section -->
+      <div id="solution">
+        <h3>Solution:</h3>
+        <pre>
+public class MergeSort {
+    public static void main(String[] args) {
+        int[] arr = {12, 11, 13, 5, 6, 7};
+
+        System.out.println("Given Array:");
+        printArray(arr);
+
+        mergeSort(arr);
+
+        System.out.println("\nSorted Array:");
+        printArray(arr);
+    }
+
+    public static void mergeSort(int[] arr) {
+        if (arr.length < 2) {
+            return;
+        }
+
+        int mid = arr.length / 2;
+        int[] left = Arrays.copyOfRange(arr, 0, mid);
+        int[] right = Arrays.copyOfRange(arr, mid, arr.length);
+
+        mergeSort(left);
+        mergeSort(right);
+
+        merge(arr, left, right);
+    }
+
+    public static void merge(int[] arr, int[] left, int[] right) {
+        int i = 0, j = 0, k = 0;
+
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                arr[k++] = left[i++];
+            } else {
+                arr[k++] = right[j++];
+            }
+        }
+
+        while (i < left.length) {
+            arr[k++] = left[i++];
+        }
+
+        while (j < right.length) {
+            arr[k++] = right[j++];
+        }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+        </pre>
+      </div>
+
+      <!-- Suggestion Section -->
+      <div id="suggestion">
+        <h3>Suggestions if you are stuck:</h3>
+        <ul>
+          <li>Use the divide-and-conquer approach: divide the array into two halves, recursively sort them, and then merge the sorted halves.</li>
+          <li>Ensure proper merging of the left and right halves.</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("runBtn").addEventListener("click", function() {
+        const code = document.getElementById("code").value;
+        document.getElementById("result").textContent = "Running Java code: \n" + code + "\n\n(Make sure to implement server-side logic for actual execution)";
+      });
+    </script>
+  </body>
+</html>

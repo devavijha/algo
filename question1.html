@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse an Array (Beginner)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">AlgoXpert</div>
+      <div class="nav-items">
+        <div class="nav-items">
+          <a href="#">Home</a>
+          <a href="suggestions.html">Suggestions</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="practice.html" class="btn">Get Started</a>              
+      </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Reverse an Array (Beginner)</h2>
+      <p>Write a Java program that reverses an array of integers.</p>
+      
+      <!-- Code Editor -->
+      <textarea id="code" placeholder="Write your Java code here..."></textarea>
+
+      <!-- Run Button -->
+      <button id="runBtn">Run Code</button>
+
+      <!-- Output -->
+      <div id="output">
+        <h3>Output:</h3>
+        <pre id="result"></pre>
+      </div>
+
+      <!-- Solution Section -->
+      <div id="solution">
+        <h3>Solution:</h3>
+        <pre>
+public class ReverseArray {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5};
+        int n = arr.length;
+        int[] reversedArr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            reversedArr[i] = arr[n - 1 - i];
+        }
+
+        System.out.print("Reversed Array: ");
+        for (int num : reversedArr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+        </pre>
+      </div>
+
+      <!-- Suggestion Section -->
+      <div id="suggestion">
+        <h3>Suggestions if you are stuck:</h3>
+        <ul>
+          <li>Remember, you can reverse an array by swapping elements or using an additional array.</li>
+          <li>Try iterating from both ends of the array and swap elements if you prefer that approach.</li>
+          <li>If you're unsure how to use a `for` loop, try breaking down the task into smaller steps and print intermediate results.</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("runBtn").addEventListener("click", function() {
+        // Mock output for now, since running Java requires server-side logic
+        const code = document.getElementById("code").value;
+        document.getElementById("result").textContent = "Running Java code: \n" + code + "\n\n(Make sure to implement server-side logic for actual execution)";
+      });
+    </script>
+  </body>
+</html>

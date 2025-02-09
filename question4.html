@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detect Cycle in a Linked List (Intermediate)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">AlgoXpert</div>
+      <div class="nav-items">
+        <div class="nav-items">
+          <a href="#">Home</a>
+          <a href="suggestions.html">Suggestions</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="practice.html" class="btn">Get Started</a>              
+      </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Detect Cycle in a Linked List (Intermediate)</h2>
+      <p>Write a Java program to detect if a cycle exists in a linked list.</p>
+      
+      <!-- Code Editor -->
+      <textarea id="code" placeholder="Write your Java code here..."></textarea>
+
+      <!-- Run Button -->
+      <button id="runBtn">Run Code</button>
+
+      <!-- Output -->
+      <div id="output">
+        <h3>Output:</h3>
+        <pre id="result"></pre>
+      </div>
+
+      <!-- Solution Section -->
+      <div id="solution">
+        <h3>Solution:</h3>
+        <pre>
+public class LinkedListCycle {
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = head.next; // Creating a cycle
+
+        System.out.println(hasCycle(head));
+    }
+
+    public static boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true; // Cycle detected
+            }
+        }
+
+        return false; // No cycle
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
+        }
+    }
+}
+        </pre>
+      </div>
+
+      <!-- Suggestion Section -->
+      <div id="suggestion">
+        <h3>Suggestions if you are stuck:</h3>
+        <ul>
+          <li>Consider using two pointers: one slow and one fast.</li>
+          <li>If both pointers meet, a cycle exists; otherwise, no cycle is detected.</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("runBtn").addEventListener("click", function() {
+        const code = document.getElementById("code").value;
+        document.getElementById("result").textContent = "Running Java code: \n" + code + "\n\n(Make sure to implement server-side logic for actual execution)";
+      });
+    </script>
+  </body>
+</html>
